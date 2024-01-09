@@ -4,6 +4,10 @@ terraform {
       version = "4.67.0"
       source  = "hashicorp/aws"
     }
+    doormat = {
+      source  = "doormat.hashicorp.services/hashicorp-security/doormat"
+      version = "~> 0.0.2"
+    }
   }
 }
 
@@ -20,15 +24,6 @@ provider "doormat" {}
 data "doormat_aws_credentials" "creds" {
   provider = doormat
   role_arn = "arn:aws:iam::407603399482:role/omid-eghaneyan-tfc-aws-variable-instances"
-}
-
-terraform {
-  required_providers {
-    doormat = {
-      source  = "doormat.hashicorp.services/hashicorp-security/doormat"
-      version = "~> 0.0.2"
-    }
-  }
 }
 
 module "vpc" {
